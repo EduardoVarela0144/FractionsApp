@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import FractionCalculator from "../screens/FractionCalculator";
-import FractionCard from "../screens/FractionCard";
+import GameNavigation from "./GameNavigation";
 import { styles } from "../assets/styles";
 
 const Tab = createBottomTabNavigator();
@@ -12,7 +12,7 @@ export default function Navigation() {
     <Tab.Navigator initialRouteName="Calculator">
       <Tab.Screen
         name="Game"
-        component={FractionCard}
+        component={GameNavigation}
         options={{
           title: "Game",
           tabBarIcon: ({ size }) => (

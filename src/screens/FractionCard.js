@@ -113,11 +113,55 @@ export default function FractionCard() {
   return (
     <View style={{ backgroundColor: "#F7F8FB", height: "100%" }}>
       <View style={{ marginTop: 70 }}>
-        <Text>
-          {fraction1 && `${fraction1.numerator}/${fraction1.denominator}`}
-          {operation}
-          {fraction2 && `${fraction2.numerator}/${fraction2.denominator}`}
-        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <View style={{ textAlign: "center" }}>
+            <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+              {fraction1 && `${fraction1.numerator}`}
+            </Text>
+            <View
+              style={{
+                backgroundColor: "black",
+                height: 4,
+                borderRadius: 10,
+              }}
+            />
+            <Text
+              style={{ fontSize: 30, textAlign: "center", fontWeight: "bold" }}
+            >
+              {fraction1 && `${fraction1.denominator}`}
+            </Text>
+          </View>
+          <Text
+            style={{ fontSize: 30, fontWeight: "bold", marginHorizontal: 10 }}
+          >
+            {operation}
+          </Text>
+          <View style={{ textAlign: "center" }}>
+            <Text
+              style={{ textAlign: "center", fontSize: 30, fontWeight: "bold" }}
+            >
+              {fraction2 && `${fraction2.numerator}`}
+            </Text>
+            <View
+              style={{
+                backgroundColor: "black",
+                height: 4,
+                borderRadius: 10,
+              }}
+            />
+            <Text
+              style={{ fontSize: 30, fontWeight: "bold", textAlign: "center" }}
+            >
+              {fraction2 && `${fraction2.denominator}`}
+            </Text>
+          </View>
+        </View>
 
         <View
           style={{
