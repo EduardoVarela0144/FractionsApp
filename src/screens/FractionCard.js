@@ -66,7 +66,7 @@ export default function FractionCard() {
     const options = [];
     options.push(correctResult);
 
-    while (options.length < 8) {
+    while (options.length < 16) {
       const numerator = Math.floor(Math.random() * 10) + 1;
       const denominator = Math.floor(Math.random() * 10) + 1;
 
@@ -111,24 +111,79 @@ export default function FractionCard() {
     generateFractionsAndOperation();
   };
   return (
-    <View>
-      <Text>
-        {fraction1 && `${fraction1.numerator}/${fraction1.denominator}`}
-        {operation}
-        {fraction2 && `${fraction2.numerator}/${fraction2.denominator}`}
-      </Text>
+    <View style={{ backgroundColor: "#F7F8FB", height: "100%" }}>
+      <View style={{ marginTop: 70 }}>
+        <Text>
+          {fraction1 && `${fraction1.numerator}/${fraction1.denominator}`}
+          {operation}
+          {fraction2 && `${fraction2.numerator}/${fraction2.denominator}`}
+        </Text>
 
-      {options.map((option, index) => (
-        <TouchableOpacity
-          key={index}
-          onPress={() => handleOptionSelect(option)}
-          style={{ backgroundColor: "blue", padding: 16, marginTop: 8 }}
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            padding: 15,
+            justifyContent: "space-evenly",
+          }}
         >
-          <Text style={{ color: "white" }}>
-            {option.numerator}/{option.denominator}
-          </Text>
-        </TouchableOpacity>
-      ))}
+          {options.map((option, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handleOptionSelect(option)}
+              style={{
+                backgroundColor: "blue",
+                marginTop: 8,
+                width: "20%",
+                alignItems: "center",
+                borderRadius: 15,
+                marginRight: 10,
+                marginLeft: 10,
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: "#1BABFF",
+                  borderRadius: 15,
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontSize: 30,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {option.numerator}
+                </Text>
+                <View
+                  style={{
+                    backgroundColor: "white",
+                    height: 6,
+                    borderRadius: 60,
+                    marginTop: 10,
+                    marginBottom: 10,
+                    width: "70%",
+                  }}
+                />
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontSize: 30,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {option.denominator}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
     </View>
   );
 }

@@ -164,9 +164,16 @@ export default function FractionCalculator() {
           </View>
         </View>
       )}
+      {!result && (
+        <View style={{ alignItems: "center" }}>
+          <Text style={{ marginTop: 100, fontSize: 20, fontWeight: "bold" }}>
+            Press the Add Fraction button to start 😅
+          </Text>
+        </View>
+      )}
       <View
         style={{
-          marginTop: 30,
+          marginTop: (result && 30) || 50,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
