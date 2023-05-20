@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Icon from "react-native-vector-icons/FontAwesome5";
 import {
   View,
   Text,
@@ -24,7 +25,7 @@ export default function FractionCalculator() {
   };
 
   const handleAddFraction = () => {
-    setFractions([...fractions, { numerator: 0, denominator: 1 }]);
+    setFractions([...fractions, { numerator: 1, denominator: 1 }]);
   };
 
   const handleRemoveFraction = (index) => {
@@ -112,52 +113,181 @@ export default function FractionCalculator() {
     return greatestCommonDivisor(b, a % b);
   };
   return (
-    <View>
-      {fractions.map((fraction, index) => (
-        <View
-          key={index}
-          style={{ flexDirection: "row", alignItems: "center" }}
-        >
-          <Text>Fraction {index + 1}: </Text>
-          <TextInput
-            style={{ width: 50, height: 30, borderWidth: 1, marginRight: 5 }}
-            keyboardType="numeric"
-            value={fraction.numerator.toString()}
-            onChangeText={(numerator) =>
-              handleFractionChange(index, numerator, fraction.denominator)
-            }
-          />
-          <Text>/</Text>
-          <TextInput
-            style={{ width: 50, height: 30, borderWidth: 1, marginRight: 10 }}
-            keyboardType="numeric"
-            value={fraction.denominator.toString()}
-            onChangeText={(denominator) =>
-              handleFractionChange(index, fraction.numerator, denominator)
-            }
-          />
-          <TouchableOpacity onPress={() => handleRemoveFraction(index)}>
-            <Text style={{ color: "red" }}>Remove</Text>
-          </TouchableOpacity>
-        </View>
-      ))}
-
-      <Button title="Add Fraction" onPress={handleAddFraction} />
-
-      <View style={{ marginTop: 10 }}>
-        <Button title="Sum" onPress={() => handleCalculate("sum")} />
-        <Button title="Subtract" onPress={() => handleCalculate("subtract")} />
-        <Button title="Multiply" onPress={() => handleCalculate("multiply")} />
-        <Button title="Divide" onPress={() => handleCalculate("divide")} />
-      </View>
-
+    <View style={{ backgroundColor: "#F7F8FB", height: "100%" }}>
       {result && (
-        <View style={{ marginTop: 10 }}>
-          <Text>
-            Result: {result.numerator}/{result.denominator}
-          </Text>
+        <View style={{ alignItems: "center", marginTop: 65 }}>
+          <View
+            style={{
+              marginTop: 10,
+              backgroundColor: "#1BABFF",
+              borderRadius: 30,
+              alignItems: "flex-end",
+              justifyContent: "center",
+              height: "auto",
+              width: "95%",
+            }}
+          >
+            <View
+              style={{
+                width: "auto",
+                marginRight: "4%",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 50,
+                  fontWeight: "500",
+                  textAlign: "center",
+                  color: "white",
+                }}
+              >
+                {result.numerator}
+              </Text>
+              <View
+                style={{
+                  backgroundColor: "white",
+                  height: 6,
+                  borderRadius: 60,
+                }}
+              />
+              <Text
+                style={{
+                  fontSize: 50,
+                  fontWeight: "500",
+                  textAlign: "center",
+                  color: "white",
+                }}
+              >
+                {result.denominator}
+              </Text>
+            </View>
+          </View>
         </View>
       )}
+      <View
+        style={{
+          marginTop: 30,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+          marginBottom: 30,
+        }}
+      >
+        <View
+          style={{ backgroundColor: "#ADE1FF", width: "20%", borderRadius: 10 }}
+        >
+          <Button
+            color={"#109DFF"}
+            title="Sum"
+            onPress={() => handleCalculate("sum")}
+          />
+        </View>
+        <View
+          style={{ backgroundColor: "#ADE1FF", width: "20%", borderRadius: 10 }}
+        >
+          <Button
+            color={"#109DFF"}
+            title="Subtract"
+            onPress={() => handleCalculate("subtract")}
+          />
+        </View>
+        <View
+          style={{ backgroundColor: "#ADE1FF", width: "20%", borderRadius: 10 }}
+        >
+          <Button
+            color={"#109DFF"}
+            title="Multiply"
+            onPress={() => handleCalculate("multiply")}
+          />
+        </View>
+        <View
+          style={{ backgroundColor: "#ADE1FF", width: "20%", borderRadius: 10 }}
+        >
+          <Button
+            color={"#109DFF"}
+            title="Divide"
+            onPress={() => handleCalculate("divide")}
+          />
+        </View>
+      </View>
+
+      <TouchableOpacity
+        onPress={handleAddFraction}
+        style={{ alignItems: "center", marginBottom: 30 }}
+      >
+        <Icon name="plus" color={"#343838"} size={40} />
+        <Text>Add Fraction</Text>
+      </TouchableOpacity>
+
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          padding: 2.5,
+        }}
+      >
+        {fractions.map((fraction, index) => (
+          <View
+            style={{
+              alignItems: "center",
+              flexDirection: "row",
+              marginBottom: 5,
+              marginRight: 10,
+            }}
+            key={index}
+          >
+            <View>
+              <TextInput
+                style={{
+                  width: 50,
+                  height: 30,
+                  marginRight: 5,
+                  borderRadius: 50,
+                  textAlign: "center",
+                  backgroundColor: "#FBFCFD",
+                  color: "#1BABFF",
+                  fontWeight: "bold",
+                }}
+                keyboardType="numeric"
+                value={fraction.numerator.toString()}
+                onChangeText={(numerator) =>
+                  handleFractionChange(index, numerator, fraction.denominator)
+                }
+              />
+              <View
+                style={{
+                  height: 5,
+                  backgroundColor: "#C9C9C9",
+                  width: "85%",
+                  borderRadius: 40,
+                  marginVertical: 5,
+                }}
+              />
+              <TextInput
+                style={{
+                  width: 50,
+                  height: 30,
+                  marginRight: 10,
+                  borderRadius: 50,
+                  textAlign: "center",
+                  backgroundColor: "#FBFCFD",
+                  color: "#1BABFF",
+                  fontWeight: "bold",
+                }}
+                keyboardType="numeric"
+                value={fraction.denominator.toString()}
+                onChangeText={(denominator) =>
+                  handleFractionChange(index, fraction.numerator, denominator)
+                }
+              />
+            </View>
+            <TouchableOpacity onPress={() => handleRemoveFraction(index)}>
+              <Icon name="times-circle" color={"red"} size={25} />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
     </View>
   );
 }
