@@ -11,18 +11,24 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "../assets/styles";
 
 export default function GameHome() {
-  const [name, Setname] = useState("Useless Text");
+  const [name, Setname] = useState("");
   const [TextValidation, SetTextValidation] = useState(false);
+  const [Avatar, SetAvatar] = useState("");
   const navigation = useNavigation();
   const goToGame = () => {
-    name === "Useless Text"
-      ? SetTextValidation(true)
-      : navigation.navigate("Game Screen", { name: name });
+    if (name === "" || Avatar === "") {
+      SetTextValidation(true);
+    } else {
+      Setname("");
+      SetAvatar("");
+      SetTextValidation(false);
+      navigation.navigate("Game Screen", { name: name, avatar: Avatar });
+    }
   };
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => SetAvatar("Men")}>
           <Image
             source={require("../assets/images/Men.png")}
             style={{
@@ -33,7 +39,7 @@ export default function GameHome() {
             }}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => SetAvatar("Female")}>
           <Image
             source={require("../assets/images/Female.png")}
             style={{
@@ -44,7 +50,7 @@ export default function GameHome() {
             }}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => SetAvatar("Punk")}>
           <Image
             source={require("../assets/images/Punk.png")}
             style={{
@@ -55,7 +61,7 @@ export default function GameHome() {
             }}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => SetAvatar("Female2")}>
           <Image
             source={require("../assets/images/Female2.png")}
             style={{
@@ -77,13 +83,14 @@ export default function GameHome() {
           style={styles.input}
           onChangeText={Setname}
           placeholder="Eduardo Varela"
+          value={name}
         />
         <View style={{ alignItems: "flex-start" }}>
           {TextValidation ? (
             <Text
               style={{ textAlign: "left", color: "red", marginVertical: 10 }}
             >
-              The name cannot be empty
+              The name and avatar cannot be empty
             </Text>
           ) : null}
         </View>
