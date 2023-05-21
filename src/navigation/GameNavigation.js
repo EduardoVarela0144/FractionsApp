@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native-animatable";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import FractionGame from "../screens/FractionGame";
 import GameHome from "../screens/GameHome";
@@ -16,12 +17,20 @@ export default function GameNavigation() {
       <Stack.Screen
         name="Game Screen"
         component={FractionGame}
-        options={{ title: "", headerTransparent: true }}
+        options={{
+          title: "",
+          headerTransparent: true,
+        }}
       />
       <Stack.Screen
         name="Final Score Screen"
         component={FinalScore}
-        options={{ title: "", headerTransparent: true }}
+        options={{
+          title: "",
+          headerTransparent: true,
+          headerLeft: () => <Text></Text>,
+          gestureEnabled: false,
+        }}
       />
     </Stack.Navigator>
   );

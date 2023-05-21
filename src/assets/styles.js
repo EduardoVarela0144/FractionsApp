@@ -60,4 +60,13 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
   },
+  bg: {
+    width: "100%",
+    height: 500,
+    backgroundColor: "#343838",
+    position: "absolute",
+    borderBottomEndRadius: 300,
+    borderBottomLeftRadius: 300,
+    transform: [{ scaleX: 2 }],
+  },
 });

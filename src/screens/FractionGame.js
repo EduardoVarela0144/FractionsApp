@@ -12,7 +12,6 @@ import {
 import { styles } from "../assets/styles";
 import * as Animatable from "react-native-animatable";
 import axios from "axios";
-import { useNavigation } from "@react-navigation/native";
 import Men from "../assets/images/Men.png";
 import Punk from "../assets/images/Punk.png";
 import Female from "../assets/images/Female.png";
@@ -35,6 +34,7 @@ export default function FractionCard(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [answer, setAnswer] = useState();
   const [points, setPoints] = useState(0);
+  const [questions, setQuestions] = useState(0);
   const [visible, setVisible] = useState(false);
   const [gifUrl, setGifUrl] = useState("");
   const [tag, setTag] = useState("");
@@ -152,9 +152,11 @@ export default function FractionCard(props) {
       setAnswer("Correct!");
       setVisible(true);
       setPoints(points + 10);
+      setQuestions(questions + 1);
       setModalVisible(true);
     } else {
       //Alert.alert("Incorrect!");
+      setQuestions(questions + 1);
       setTag("bad job");
       fetchRandomGif();
       setAnswer("Incorrect!");
@@ -167,7 +169,9 @@ export default function FractionCard(props) {
   const HideModal = () => {
     setModalVisible(!modalVisible);
     setVisible(false);
-    if (points >= 1) {
+    if (questions >= 10) {
+      setPoints(0);
+      setQuestions(0);
       goToFinalScore();
     }
   };
@@ -194,7 +198,11 @@ export default function FractionCard(props) {
   };
 
   const goToFinalScore = () => {
-    navigation.navigate("Final Score Screen", { score: points });
+    navigation.navigate("Final Score Screen", {
+      score: points,
+      avatar: params.avatar,
+      name: params.name,
+    });
   };
 
   return (

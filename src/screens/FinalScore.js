@@ -1,12 +1,23 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import { styles } from "../assets/styles";
+import Men from "../assets/images/Men.png";
+import Punk from "../assets/images/Punk.png";
+import Female from "../assets/images/Female.png";
+import Female2 from "../assets/images/Female2.png";
+const imageMap = {
+  Men: Men,
+  Punk: Punk,
+  Female: Female,
+  Female2: Female2,
+};
 
 export default function FinalScore(props) {
   const {
     navigation,
     route: { params },
   } = props;
+
   const score = {
     color:
       params.score <= 50
@@ -14,12 +25,43 @@ export default function FinalScore(props) {
         : params.score > 50 && params.score <= 70
         ? "yellow"
         : "red",
-    fontSize: 50,
+    fontSize: 100,
+    marginTop: 30,
   };
+
+  const selectedImage = imageMap[params.avatar] || Men;
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 30 }}> Your Score </Text>
-      <Text style={score}> {params.score} / 100 </Text>
+    <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={styles.bg} />
+      <View
+        style={{
+          alignItems: "center",
+          marginTop: 100,
+          justifyContent: "center",
+        }}
+      >
+        <Image
+          source={selectedImage}
+          style={{
+            width: 300,
+            height: 300,
+          }}
+        />
+        <Text
+          style={{
+            fontSize: 30,
+            color: "white",
+            fontWeight: "bold",
+            marginVertical: 20,
+          }}
+        >
+          {params.name}{" "}
+        </Text>
+      </View>
+      <View style={{ marginTop: 70, alignItems: "center" }}>
+        <Text style={{ fontSize: 30 }}> Your Score </Text>
+        <Text style={score}> {params.score} / 100 </Text>
+      </View>
     </View>
   );
 }
