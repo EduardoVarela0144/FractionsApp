@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
   },
   bg: {
     width: "100%",
-    height: 500,
+    height: "60%",
     backgroundColor: "#343838",
     position: "absolute",
     borderBottomEndRadius: 300,

@@ -20,8 +20,6 @@ export default function FractionCalculator() {
       denominator: denominator,
     };
     setFractions(updatedFractions);
-
-    Keyboard.dismiss(); // Oculta el teclado
   };
 
   const handleAddFraction = () => {
@@ -112,6 +110,10 @@ export default function FractionCalculator() {
     }
     return greatestCommonDivisor(b, a % b);
   };
+
+  const hideKeyboard = () => {
+    Keyboard.dismiss();
+  };
   return (
     <View style={{ backgroundColor: "#F7F8FB", height: "100%" }}>
       {result && (
@@ -127,6 +129,7 @@ export default function FractionCalculator() {
               width: "95%",
             }}
           >
+            <Button onPress={hideKeyboard} title="Hide Keyboard" />
             <View
               style={{
                 width: "auto",
@@ -186,6 +189,7 @@ export default function FractionCalculator() {
           <Button
             color={"#109DFF"}
             title="Sum"
+            titleStyle={{ fontSize: 4 }}
             onPress={() => handleCalculate("sum")}
           />
         </View>
