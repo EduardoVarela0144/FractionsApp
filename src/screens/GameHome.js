@@ -27,49 +27,65 @@ export default function GameHome() {
   };
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity onPress={() => SetAvatar("Men")}>
+      <View style={{ flexDirection: "row", width: "100%" }}>
+        <TouchableOpacity
+          style={{ width: "25%" }}
+          onPress={() => SetAvatar("Men")}
+        >
           <Image
             source={require("../assets/images/Men.png")}
             style={{
-              width: 80,
+              width: "80%",
               height: 80,
               marginBottom: 30,
               marginHorizontal: 10,
             }}
+            resizeMode="contain"
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => SetAvatar("Female")}>
+        <TouchableOpacity
+          style={{ width: "25%" }}
+          onPress={() => SetAvatar("Female")}
+        >
           <Image
             source={require("../assets/images/Female.png")}
             style={{
-              width: 80,
+              width: "80%",
               height: 80,
               marginBottom: 30,
               marginHorizontal: 10,
             }}
+            resizeMode="contain"
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => SetAvatar("Punk")}>
+        <TouchableOpacity
+          style={{ width: "25%" }}
+          onPress={() => SetAvatar("Punk")}
+        >
           <Image
             source={require("../assets/images/Punk.png")}
             style={{
-              width: 80,
+              width: "80%",
               height: 80,
               marginBottom: 30,
               marginHorizontal: 10,
             }}
+            resizeMode="contain"
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => SetAvatar("Female2")}>
+        <TouchableOpacity
+          style={{ width: "25%" }}
+          onPress={() => SetAvatar("Female2")}
+        >
           <Image
             source={require("../assets/images/Female2.png")}
             style={{
-              width: 80,
+              width: "80%",
               height: 80,
               marginBottom: 30,
               marginHorizontal: 10,
             }}
+            resizeMode="contain"
           />
         </TouchableOpacity>
       </View>
