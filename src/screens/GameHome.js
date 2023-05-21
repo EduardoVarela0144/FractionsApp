@@ -33,14 +33,13 @@ export default function GameHome() {
         style={{
           flexDirection: "row",
           width: "100%",
-          height: 80,
-          backgroundColor: "red",
+          height: 70,
+          marginVertical: 10,
         }}
       >
         <TouchableOpacity
           style={{
             width: "25%",
-            backgroundColor: "blue",
             alignItems: "center",
           }}
           onPress={() => SetAvatar("Men")}
@@ -58,7 +57,6 @@ export default function GameHome() {
         <TouchableOpacity
           style={{
             width: "25%",
-            backgroundColor: "yellow",
             alignItems: "center",
           }}
           onPress={() => SetAvatar("Female")}
@@ -76,7 +74,6 @@ export default function GameHome() {
         <TouchableOpacity
           style={{
             width: "25%",
-            backgroundColor: "green",
             alignItems: "center",
           }}
           onPress={() => SetAvatar("Punk")}
@@ -94,7 +91,6 @@ export default function GameHome() {
         <TouchableOpacity
           style={{
             width: "25%",
-            backgroundColor: "pink",
             alignItems: "center",
           }}
           onPress={() => SetAvatar("Female2")}

@@ -70,8 +70,8 @@ export const styles = StyleSheet.create({
     transform: [{ scaleX: 2 }],
   },
   avatarButton: {
-    width: "90%",
-    height: "90%",
+    width: 70,
+    height: 70,
     marginBottom: 30,
     marginHorizontal: 10,
   },
