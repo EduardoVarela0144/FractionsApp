@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Modal,
+  Pressable,
+  Image,
+  ActivityIndicator,
+} from "react-native";
+import { styles } from "../assets/styles";
+import * as Animatable from "react-native-animatable";
+import axios from "axios";
 
 export default function FractionCard(props) {
   const {
@@ -7,6 +19,19 @@ export default function FractionCard(props) {
     route: { params },
   } = props;
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [answer, setAnswer] = useState();
+  const [points, setPoints] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [gifUrl, setGifUrl] = useState("");
+  const [tag, setTag] = useState("");
+
+  var bar_styles = {
+    backgroundColor: "#1BABFF",
+    width: `${points}%`,
+    height: 10,
+    borderRadius: 10,
+  };
   const [fraction1, setFraction1] = useState(null);
   const [fraction2, setFraction2] = useState(null);
   const [operation, setOperation] = useState("");
@@ -108,13 +133,50 @@ export default function FractionCard(props) {
 
   const handleOptionSelect = (selectedOption) => {
     if (checkFractionsEquality(selectedOption, result)) {
-      Alert.alert("Correct!");
+      //Alert.alert("Correct!");
+      setTag("good job");
+      fetchRandomGif();
+      setAnswer("Correct!");
+      setVisible(true);
+      setPoints(points + 10);
+      setModalVisible(true);
     } else {
-      Alert.alert("Incorrect!");
+      //Alert.alert("Incorrect!");
+      setTag("bad job");
+      fetchRandomGif();
+      setAnswer("Incorrect!");
+      setModalVisible(true);
     }
 
     generateFractionsAndOperation();
   };
+
+  const HideModal = () => {
+    setModalVisible(!modalVisible);
+    setVisible(false);
+  };
+
+  const fetchRandomGif = async () => {
+    try {
+      const response = await axios.get("https://api.giphy.com/v1/gifs/random", {
+        params: {
+          api_key: "9Iy1A9JDXyAgMKPDfxOudSSllG7k5j1g",
+          tag: tag,
+        },
+      });
+
+      const gifData = response.data.data;
+      const gifUrl = gifData.images.fixed_height_downsampled.url;
+      setGifUrl(gifUrl);
+    } catch (error) {
+      console.log("Error al obtener el GIF:", error);
+    }
+  };
+
+  const color = {
+    color: answer === "Correct!" ? "#21D589" : "red",
+  };
+
   return (
     <View style={{ backgroundColor: "#F7F8FB", height: "100%" }}>
       <View style={{ marginTop: 70 }}>
@@ -123,12 +185,35 @@ export default function FractionCard(props) {
             textAlign: "right",
             paddingRight: 10,
             fontSize: 20,
-            marginBottom: 50,
             fontWeight: "bold",
+            marginBottom: 10,
           }}
         >
           Welcome, {params.name} 👋{" "}
         </Text>
+        <View
+          style={{ alignItems: "flex-end", marginBottom: 50, paddingRight: 10 }}
+        >
+          {visible && (
+            <Animatable.Text
+              animation="zoomIn"
+              duration={500}
+              style={{ fontSize: 24, fontWeight: "bold", color: "#21D589" }}
+            >
+              +1
+            </Animatable.Text>
+          )}
+          <View
+            style={{
+              backgroundColor: "#dedede",
+              width: "70%",
+              height: 10,
+              borderRadius: 10,
+            }}
+          >
+            <View style={bar_styles} />
+          </View>
+        </View>
         <View
           style={{
             flexDirection: "row",
@@ -137,7 +222,9 @@ export default function FractionCard(props) {
           }}
         >
           <View style={{ textAlign: "center" }}>
-            <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+            <Text
+              style={{ fontSize: 30, fontWeight: "bold", textAlign: "center" }}
+            >
               {fraction1 && `${fraction1.numerator}`}
             </Text>
             <View
@@ -192,7 +279,6 @@ export default function FractionCard(props) {
               key={index}
               onPress={() => handleOptionSelect(option)}
               style={{
-                backgroundColor: "blue",
                 marginTop: 8,
                 width: "20%",
                 alignItems: "center",
@@ -244,6 +330,36 @@ export default function FractionCard(props) {
           ))}
         </View>
       </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={[styles.modalText, color]}>{answer}</Text>
+            {gifUrl ? (
+              <Image
+                source={{ uri: gifUrl && gifUrl }}
+                style={{ width: 250, height: 250 }}
+              />
+            ) : (
+              <ActivityIndicator size="large" color="#1BABFF" />
+            )}
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={HideModal}
+            >
+              <Text style={styles.textStyle}>Ok</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
