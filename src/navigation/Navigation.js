@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import FractionCalculator from "../screens/FractionCalculator";
 import GameNavigation from "./GameNavigation";
-import { styles } from "../assets/styles";
 
 const Tab = createBottomTabNavigator();
 

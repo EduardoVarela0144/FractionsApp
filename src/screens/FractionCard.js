@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 
-export default function FractionCard() {
+export default function FractionCard(props) {
+  const {
+    navigation,
+    route: { params },
+  } = props;
+
   const [fraction1, setFraction1] = useState(null);
   const [fraction2, setFraction2] = useState(null);
   const [operation, setOperation] = useState("");
@@ -113,6 +118,17 @@ export default function FractionCard() {
   return (
     <View style={{ backgroundColor: "#F7F8FB", height: "100%" }}>
       <View style={{ marginTop: 70 }}>
+        <Text
+          style={{
+            textAlign: "right",
+            paddingRight: 10,
+            fontSize: 20,
+            marginBottom: 50,
+            fontWeight: "bold",
+          }}
+        >
+          Welcome, {params.name} 👋{" "}
+        </Text>
         <View
           style={{
             flexDirection: "row",

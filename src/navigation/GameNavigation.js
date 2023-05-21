@@ -1,6 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import FractionCard from "../screens/FractionCard";
+import GameHome from "../screens/GameHome";
 const Stack = createNativeStackNavigator();
 
 export default function GameNavigation() {
@@ -8,7 +9,7 @@ export default function GameNavigation() {
     <Stack.Navigator>
       <Stack.Screen
         name="GameHome Screen"
-        component={FractionCard}
+        component={GameHome}
         options={{ title: "", headerTransparent: true }}
       />
       <Stack.Screen
