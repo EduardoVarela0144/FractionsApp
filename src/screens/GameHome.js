@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TextInput, Button } from "react-native";
+import { Text, View, TextInput, Button, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../assets/styles";
 
@@ -11,8 +11,36 @@ export default function GameHome() {
   };
   return (
     <View style={styles.container}>
+      <View style={{ flexDirection: "row" }}>
+        <Image
+          source={require("../assets/images/Men.png")}
+          style={{
+            width: 100,
+            height: 100,
+            marginBottom: 30,
+            marginHorizontal: 10,
+          }}
+        />
+        <Image
+          source={require("../assets/images/Female.png")}
+          style={{
+            width: 100,
+            height: 100,
+            marginBottom: 30,
+            marginHorizontal: 10,
+          }}
+        />
+        <Image
+          source={require("../assets/images/Punk.png")}
+          style={{
+            width: 100,
+            height: 100,
+            marginBottom: 30,
+            marginHorizontal: 10,
+          }}
+        />
+      </View>
       <View>
-        <View circle />
         <Text style={{ fontSize: 30, fontWeight: "bold", color: "#343838" }}>
           Enter your name ...{" "}
         </Text>
