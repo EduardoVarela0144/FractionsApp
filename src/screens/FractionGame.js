@@ -8,6 +8,7 @@ import {
   Pressable,
   Image,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import { styles } from "../assets/styles";
 import * as Animatable from "react-native-animatable";
@@ -221,7 +222,7 @@ export default function FractionCard(props) {
             style={{
               textAlign: "right",
               paddingRight: 10,
-              fontSize: 20,
+              fontSize: 15,
               fontWeight: "bold",
             }}
           >
@@ -319,69 +320,71 @@ export default function FractionCard(props) {
           </View>
         </View>
 
-        <View
-          style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            padding: 15,
-            justifyContent: "space-evenly",
-          }}
-        >
-          {options.map((option, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={() => handleOptionSelect(option)}
-              style={{
-                marginTop: 8,
-                width: "20%",
-                alignItems: "center",
-                borderRadius: 15,
-                marginRight: 10,
-                marginLeft: 10,
-              }}
-            >
-              <View
+        <ScrollView contentContainerStyle={{ paddingBottom: 230 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              padding: 15,
+              justifyContent: "space-evenly",
+            }}
+          >
+            {options.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => handleOptionSelect(option)}
                 style={{
-                  backgroundColor: "#1BABFF",
-                  borderRadius: 15,
+                  marginTop: 8,
+                  width: "20%",
                   alignItems: "center",
-                  width: "100%",
+                  borderRadius: 15,
+                  marginRight: 10,
+                  marginLeft: 10,
                 }}
               >
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontSize: 30,
-                    fontWeight: "bold",
-                  }}
-                >
-                  {option.numerator}
-                </Text>
                 <View
                   style={{
-                    backgroundColor: "white",
-                    height: 6,
-                    borderRadius: 60,
-                    marginTop: 10,
-                    marginBottom: 10,
-                    width: "70%",
-                  }}
-                />
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontSize: 30,
-                    fontWeight: "bold",
+                    backgroundColor: "#1BABFF",
+                    borderRadius: 15,
+                    alignItems: "center",
+                    width: "100%",
                   }}
                 >
-                  {option.denominator}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
+                  <Text
+                    style={{
+                      color: "white",
+                      textAlign: "center",
+                      fontSize: 30,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {option.numerator}
+                  </Text>
+                  <View
+                    style={{
+                      backgroundColor: "white",
+                      height: 6,
+                      borderRadius: 60,
+                      marginTop: 10,
+                      marginBottom: 10,
+                      width: "70%",
+                    }}
+                  />
+                  <Text
+                    style={{
+                      color: "white",
+                      textAlign: "center",
+                      fontSize: 30,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {option.denominator}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
       </View>
 
       <Modal
