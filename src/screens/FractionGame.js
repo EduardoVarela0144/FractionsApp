@@ -243,7 +243,9 @@ export default function FractionCard(props) {
         <View
           style={{ alignItems: "flex-end", marginBottom: 30, paddingRight: 10 }}
         >
-          <Text style={{ fontWeight: "bold", marginVertical: 5 }}>Score</Text>
+          <Text style={{ fontWeight: "bold", marginVertical: 5 }}>
+            Score {points} of 100
+          </Text>
 
           {visible && (
             <Animatable.Text
