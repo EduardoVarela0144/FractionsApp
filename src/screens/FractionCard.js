@@ -96,7 +96,7 @@ export default function FractionCard(props) {
     const options = [];
     options.push(correctResult);
 
-    while (options.length < 16) {
+    while (options.length < 20) {
       const numerator = Math.floor(Math.random() * 10) + 1;
       const denominator = Math.floor(Math.random() * 10) + 1;
 
