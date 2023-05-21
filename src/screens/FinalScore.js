@@ -36,12 +36,13 @@ export default function FinalScore(props) {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: "center" }}>
+    <View style={{ alignItems: "center" }}>
       <View style={styles.bg} />
       <View
         style={{
           alignItems: "center",
           justifyContent: "center",
+          position: "relative",
         }}
       >
         <Image
