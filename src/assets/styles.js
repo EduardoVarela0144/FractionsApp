@@ -69,4 +69,15 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 300,
     transform: [{ scaleX: 2 }],
   },
+  avatarButton: {
+    width: "90%",
+    height: "90%",
+    marginBottom: 30,
+    marginHorizontal: 10,
+  },
+  selectedAvatarButton: {
+    borderColor: "#343838",
+    borderWidth: 3,
+    borderRadius: 50,
+  },
 });

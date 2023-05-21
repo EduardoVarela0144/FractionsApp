@@ -122,6 +122,7 @@ export default function FractionCalculator() {
           <TouchableOpacity
             onPress={hideKeyboard}
             style={{ width: "100%", alignItems: "center" }}
+            activeOpacity={1}
           >
             <View
               style={{

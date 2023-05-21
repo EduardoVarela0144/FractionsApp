@@ -18,6 +18,7 @@ export default function Navigation() {
             <Icon name="rocket" color="#1BABFF" size={size} />
           ),
           headerShown: false,
+          tabBarLabelStyle: { color: "#1BABFF" },
         }}
       />
       <Tab.Screen
@@ -28,6 +29,7 @@ export default function Navigation() {
           tabBarIcon: ({ size }) => (
             <Icon name="calculator" color="#1BABFF" size={size} />
           ),
+          tabBarLabelStyle: { color: "#1BABFF" },
           headerShown: false,
         }}
       />
@@ -39,6 +41,7 @@ export default function Navigation() {
           tabBarIcon: ({ size }) => (
             <Icon name="user" color="#1BABFF" size={size} />
           ),
+          tabBarLabelStyle: { color: "#1BABFF" },
           headerShown: false,
         }}
       />

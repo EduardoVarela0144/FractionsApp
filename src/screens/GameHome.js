@@ -15,6 +15,7 @@ export default function GameHome() {
   const [TextValidation, SetTextValidation] = useState(false);
   const [Avatar, SetAvatar] = useState("");
   const navigation = useNavigation();
+
   const goToGame = () => {
     if (name === "" || Avatar === "") {
       SetTextValidation(true);
@@ -25,66 +26,86 @@ export default function GameHome() {
       navigation.navigate("Game Screen", { name: name, avatar: Avatar });
     }
   };
+
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: "row", width: "100%" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          width: "100%",
+          height: 80,
+          backgroundColor: "red",
+        }}
+      >
         <TouchableOpacity
-          style={{ width: "25%" }}
+          style={{
+            width: "25%",
+            backgroundColor: "blue",
+            alignItems: "center",
+          }}
           onPress={() => SetAvatar("Men")}
+          activeOpacity={1}
         >
           <Image
             source={require("../assets/images/Men.png")}
-            style={{
-              width: "80%",
-              height: 80,
-              marginBottom: 30,
-              marginHorizontal: 10,
-            }}
+            style={[
+              styles.avatarButton,
+              Avatar === "Men" && styles.selectedAvatarButton,
+            ]}
             resizeMode="contain"
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={{ width: "25%" }}
+          style={{
+            width: "25%",
+            backgroundColor: "yellow",
+            alignItems: "center",
+          }}
           onPress={() => SetAvatar("Female")}
+          activeOpacity={1}
         >
           <Image
             source={require("../assets/images/Female.png")}
-            style={{
-              width: "80%",
-              height: 80,
-              marginBottom: 30,
-              marginHorizontal: 10,
-            }}
+            style={[
+              styles.avatarButton,
+              Avatar === "Female" && styles.selectedAvatarButton,
+            ]}
             resizeMode="contain"
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={{ width: "25%" }}
+          style={{
+            width: "25%",
+            backgroundColor: "green",
+            alignItems: "center",
+          }}
           onPress={() => SetAvatar("Punk")}
+          activeOpacity={1}
         >
           <Image
             source={require("../assets/images/Punk.png")}
-            style={{
-              width: "80%",
-              height: 80,
-              marginBottom: 30,
-              marginHorizontal: 10,
-            }}
+            style={[
+              styles.avatarButton,
+              Avatar === "Punk" && styles.selectedAvatarButton,
+            ]}
             resizeMode="contain"
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={{ width: "25%" }}
+          style={{
+            width: "25%",
+            backgroundColor: "pink",
+            alignItems: "center",
+          }}
           onPress={() => SetAvatar("Female2")}
+          activeOpacity={1}
         >
           <Image
             source={require("../assets/images/Female2.png")}
-            style={{
-              width: "80%",
-              height: 80,
-              marginBottom: 30,
-              marginHorizontal: 10,
-            }}
+            style={[
+              styles.avatarButton,
+              Avatar === "Female2" && styles.selectedAvatarButton,
+            ]}
             resizeMode="contain"
           />
         </TouchableOpacity>

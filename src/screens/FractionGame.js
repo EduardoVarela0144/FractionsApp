@@ -252,7 +252,11 @@ export default function FractionCard(props) {
             <Animatable.Text
               animation="zoomIn"
               duration={500}
-              style={{ fontSize: 24, fontWeight: "bold", color: "#21D589" }}
+              style={{
+                fontSize: 24,
+                fontWeight: "bold",
+                color: "#21D589",
+              }}
             >
               +1
             </Animatable.Text>
@@ -402,7 +406,7 @@ export default function FractionCard(props) {
             {gifUrl ? (
               <Image
                 source={{ uri: gifUrl && gifUrl }}
-                style={{ width: 250, height: 250 }}
+                style={{ width: 180, height: 180 }}
               />
             ) : (
               <ActivityIndicator size="large" color="#1BABFF" />
