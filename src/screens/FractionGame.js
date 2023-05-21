@@ -235,9 +235,16 @@ export default function FractionCard(props) {
             }}
           />
         </View>
-        <View
-          style={{ alignItems: "flex-end", marginBottom: 50, paddingRight: 10 }}
+        <Text
+          style={{ textAlign: "right", paddingRight: 10, marginVertical: 4 }}
         >
+          {questions + 1} of 10
+        </Text>
+        <View
+          style={{ alignItems: "flex-end", marginBottom: 30, paddingRight: 10 }}
+        >
+          <Text style={{ fontWeight: "bold", marginVertical: 5 }}>Score</Text>
+
           {visible && (
             <Animatable.Text
               animation="zoomIn"
