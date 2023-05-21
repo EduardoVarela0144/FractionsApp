@@ -12,6 +12,7 @@ export default function GameHome() {
   return (
     <View style={styles.container}>
       <View>
+        <View circle />
         <Text style={{ fontSize: 30, fontWeight: "bold", color: "#343838" }}>
           Enter your name ...{" "}
         </Text>
