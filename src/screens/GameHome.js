@@ -1,44 +1,71 @@
 import React, { useState } from "react";
-import { Text, View, TextInput, Button, Image } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  Button,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../assets/styles";
 
 export default function GameHome() {
   const [name, Setname] = useState("Useless Text");
+  const [TextValidation, SetTextValidation] = useState(false);
   const navigation = useNavigation();
   const goToGame = () => {
-    navigation.navigate("Game Screen", { name: name });
+    name === "Useless Text"
+      ? SetTextValidation(true)
+      : navigation.navigate("Game Screen", { name: name });
   };
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
-        <Image
-          source={require("../assets/images/Men.png")}
-          style={{
-            width: 100,
-            height: 100,
-            marginBottom: 30,
-            marginHorizontal: 10,
-          }}
-        />
-        <Image
-          source={require("../assets/images/Female.png")}
-          style={{
-            width: 100,
-            height: 100,
-            marginBottom: 30,
-            marginHorizontal: 10,
-          }}
-        />
-        <Image
-          source={require("../assets/images/Punk.png")}
-          style={{
-            width: 100,
-            height: 100,
-            marginBottom: 30,
-            marginHorizontal: 10,
-          }}
-        />
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/images/Men.png")}
+            style={{
+              width: 80,
+              height: 80,
+              marginBottom: 30,
+              marginHorizontal: 10,
+            }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/images/Female.png")}
+            style={{
+              width: 80,
+              height: 80,
+              marginBottom: 30,
+              marginHorizontal: 10,
+            }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/images/Punk.png")}
+            style={{
+              width: 80,
+              height: 80,
+              marginBottom: 30,
+              marginHorizontal: 10,
+            }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            source={require("../assets/images/Female2.png")}
+            style={{
+              width: 80,
+              height: 80,
+              marginBottom: 30,
+              marginHorizontal: 10,
+            }}
+          />
+        </TouchableOpacity>
       </View>
       <View>
         <Text style={{ fontSize: 30, fontWeight: "bold", color: "#343838" }}>
@@ -51,6 +78,15 @@ export default function GameHome() {
           onChangeText={Setname}
           placeholder="Eduardo Varela"
         />
+        <View style={{ alignItems: "flex-start" }}>
+          {TextValidation ? (
+            <Text
+              style={{ textAlign: "left", color: "red", marginVertical: 10 }}
+            >
+              The name cannot be empty
+            </Text>
+          ) : null}
+        </View>
         <View
           style={{
             backgroundColor: "#ADE1FF",
