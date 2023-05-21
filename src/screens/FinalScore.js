@@ -32,7 +32,7 @@ export default function FinalScore(props) {
   const selectedImage = imageMap[params.avatar] || Men;
 
   const goToHome = () => {
-    navigation.navigate("Game Home");
+    navigation.navigate("GameHome Screen");
   };
 
   return (
