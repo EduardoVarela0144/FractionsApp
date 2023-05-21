@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Button } from "react-native";
 import { styles } from "../assets/styles";
 import Men from "../assets/images/Men.png";
 import Punk from "../assets/images/Punk.png";
@@ -30,6 +30,11 @@ export default function FinalScore(props) {
   };
 
   const selectedImage = imageMap[params.avatar] || Men;
+
+  const goToHome = () => {
+    navigation.navigate("Game Home");
+  };
+
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
       <View style={styles.bg} />
@@ -61,6 +66,16 @@ export default function FinalScore(props) {
       <View style={{ marginTop: 70, alignItems: "center" }}>
         <Text style={{ fontSize: 30 }}> Your Score </Text>
         <Text style={score}> {params.score} / 100 </Text>
+      </View>
+      <View
+        style={{
+          backgroundColor: "#ADE1FF",
+          width: 150,
+          borderRadius: 10,
+          marginTop: 30,
+        }}
+      >
+        <Button onPress={goToHome} color={"#109DFF"} title="Finish" />
       </View>
     </View>
   );
