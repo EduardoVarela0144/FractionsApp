@@ -12,6 +12,7 @@ import {
 import { styles } from "../assets/styles";
 import * as Animatable from "react-native-animatable";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 export default function FractionCard(props) {
   const {
@@ -154,6 +155,9 @@ export default function FractionCard(props) {
   const HideModal = () => {
     setModalVisible(!modalVisible);
     setVisible(false);
+    if (points >= 1) {
+      goToFinalScore();
+    }
   };
 
   const fetchRandomGif = async () => {
@@ -175,6 +179,10 @@ export default function FractionCard(props) {
 
   const color = {
     color: answer === "Correct!" ? "#21D589" : "red",
+  };
+
+  const goToFinalScore = () => {
+    navigation.navigate("Final Score Screen", { score: points });
   };
 
   return (
