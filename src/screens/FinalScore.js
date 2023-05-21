@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, Button } from "react-native";
+import { Text, View, Image, Button, TouchableOpacity } from "react-native";
 import { styles } from "../assets/styles";
 import Men from "../assets/images/Men.png";
 import Punk from "../assets/images/Punk.png";
@@ -25,8 +25,8 @@ export default function FinalScore(props) {
         : params.score > 50 && params.score <= 70
         ? "yellow"
         : "red",
-    fontSize: 100,
-    marginTop: 30,
+    fontSize: 50,
+    marginTop: 20,
   };
 
   const selectedImage = imageMap[params.avatar] || Men;
@@ -41,41 +41,42 @@ export default function FinalScore(props) {
       <View
         style={{
           alignItems: "center",
-          marginTop: 100,
           justifyContent: "center",
         }}
       >
         <Image
           source={selectedImage}
-          style={{
-            width: 300,
-            height: 300,
-          }}
+          style={{ width: "60%", aspectRatio: 1, height: "60%" }}
+          resizeMode="contain"
         />
         <Text
           style={{
-            fontSize: 30,
+            fontSize: 25,
             color: "white",
             fontWeight: "bold",
-            marginVertical: 20,
+            marginVertical: "3%",
           }}
         >
           {params.name}{" "}
         </Text>
       </View>
-      <View style={{ marginTop: 70, alignItems: "center" }}>
-        <Text style={{ fontSize: 30 }}> Your Score </Text>
+      <View style={{ alignItems: "center" }}>
+        <Text style={{ fontSize: 25 }}> Your Score </Text>
         <Text style={score}> {params.score} / 100 </Text>
       </View>
       <View
         style={{
           backgroundColor: "#ADE1FF",
-          width: 150,
+          width: "40%",
           borderRadius: 10,
-          marginTop: 30,
+          marginTop: "5%",
         }}
       >
-        <Button onPress={goToHome} color={"#109DFF"} title="Finish" />
+        <TouchableOpacity onPress={goToHome} style={{ paddingVertical: "3%" }}>
+          <Text style={{ fontSize: 30, color: "#109DFF", textAlign: "center" }}>
+            Finish
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
