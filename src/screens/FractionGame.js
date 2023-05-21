@@ -171,9 +171,9 @@ export default function FractionCard(props) {
     setModalVisible(!modalVisible);
     setVisible(false);
     if (questions >= 9) {
+      goToFinalScore();
       setPoints(0);
       setQuestions(0);
-      goToFinalScore();
     }
   };
 
