@@ -13,12 +13,24 @@ import { styles } from "../assets/styles";
 import * as Animatable from "react-native-animatable";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import Men from "../assets/images/Men.png";
+import Punk from "../assets/images/Punk.png";
+import Female from "../assets/images/Female.png";
+import Female2 from "../assets/images/Female2.png";
 
+const imageMap = {
+  Men: Men,
+  Punk: Punk,
+  Female: Female,
+  Female2: Female2,
+};
 export default function FractionCard(props) {
   const {
     navigation,
     route: { params },
   } = props;
+
+  const selectedImage = imageMap[params.avatar] || Men;
 
   const [modalVisible, setModalVisible] = useState(false);
   const [answer, setAnswer] = useState();
@@ -188,17 +200,33 @@ export default function FractionCard(props) {
   return (
     <View style={{ backgroundColor: "#F7F8FB", height: "100%" }}>
       <View style={{ marginTop: 70 }}>
-        <Text
+        <View
           style={{
-            textAlign: "right",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            alignItems: "center",
             paddingRight: 10,
-            fontSize: 20,
-            fontWeight: "bold",
-            marginBottom: 10,
+            marginBottom: 5,
           }}
         >
-          Welcome, {params.name} 👋{" "}
-        </Text>
+          <Text
+            style={{
+              textAlign: "right",
+              paddingRight: 10,
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+          >
+            Welcome, {params.name} 👋{" "}
+          </Text>
+          <Image
+            source={selectedImage}
+            style={{
+              width: 30,
+              height: 30,
+            }}
+          />
+        </View>
         <View
           style={{ alignItems: "flex-end", marginBottom: 50, paddingRight: 10 }}
         >
