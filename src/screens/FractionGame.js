@@ -192,7 +192,7 @@ export default function FractionCard(props) {
   const HideModal = () => {
     setModalVisible(!modalVisible);
     setVisible(false);
-    if (questions >= 1) {
+    if (questions >= 9) {
       handlePostRequest();
       goToFinalScore();
       setPoints(0);

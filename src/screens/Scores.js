@@ -3,6 +3,7 @@ import { Text, View, ScrollView, Image } from "react-native";
 import { styles } from "../assets/styles";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase";
+import { useIsFocused } from "@react-navigation/native";
 import ScoreData from "../assets/components/ScoreData";
 import Men from "../assets/images/Men.png";
 import Punk from "../assets/images/Punk.png";
@@ -14,55 +15,52 @@ export default function Scores() {
   const [documentos, setDocumentos] = useState([]);
   const [valoresAltos, setValoresAltos] = useState([]);
 
-  useEffect(() => {
-    const obtenerColeccion = async () => {
-      try {
-        const q = query(collection(db, "Scores"), orderBy("Score", "desc"));
+  const obtenerColeccion = async () => {
+    try {
+      const q = query(collection(db, "Scores"), orderBy("Score", "desc"));
 
-        const querySnapshot = await getDocs(q);
+      const querySnapshot = await getDocs(q);
 
-        const documentosArray = [];
-        querySnapshot.forEach((doc) => {
-          documentosArray.push({
-            id: doc.id,
-            ...doc.data(),
-          });
+      const documentosArray = [];
+      querySnapshot.forEach((doc) => {
+        documentosArray.push({
+          id: doc.id,
+          ...doc.data(),
         });
+      });
 
-        setDocumentos(documentosArray);
-      } catch (error) {
-        console.error("Error al obtener la colección:", error);
-      }
-    };
+      setDocumentos(documentosArray);
+    } catch (error) {
+      console.error("Error al obtener la colección:", error);
+    }
+  };
 
+  const obtenerTresValoresAltos = async () => {
+    try {
+      const q = query(
+        collection(db, "Scores"),
+        orderBy("Score", "desc"),
+        limit(3)
+      );
+
+      const querySnapshot = await getDocs(q);
+
+      const resultados = [];
+      querySnapshot.forEach((doc) => {
+        resultados.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+
+      setValoresAltos(resultados);
+    } catch (error) {
+      console.error("Error al obtener los tres valores más altos:", error);
+    }
+  };
+
+  useEffect(() => {
     obtenerColeccion();
-  }, []);
-
-  useEffect(() => {
-    const obtenerTresValoresAltos = async () => {
-      try {
-        const q = query(
-          collection(db, "Scores"),
-          orderBy("Score", "desc"),
-          limit(3)
-        );
-
-        const querySnapshot = await getDocs(q);
-
-        const resultados = [];
-        querySnapshot.forEach((doc) => {
-          resultados.push({
-            id: doc.id,
-            ...doc.data(),
-          });
-        });
-
-        setValoresAltos(resultados);
-      } catch (error) {
-        console.error("Error al obtener los tres valores más altos:", error);
-      }
-    };
-
     obtenerTresValoresAltos();
   }, []);
 
@@ -76,6 +74,16 @@ export default function Scores() {
   const selectedImageUno = imageMap[valoresAltos[0]?.Avatar] || Men;
   const selectedImageDos = imageMap[valoresAltos[1]?.Avatar] || Punk;
   const selectedImageTres = imageMap[valoresAltos[2]?.Avatar] || Female;
+
+  const handleScroll = (event) => {
+    const { contentOffset } = event.nativeEvent;
+
+    // Verificar si el desplazamiento es hacia arriba
+    if (contentOffset.y <= 0) {
+      obtenerColeccion();
+      obtenerTresValoresAltos();
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -211,7 +219,7 @@ export default function Scores() {
         </View>
       </View>
       <View style={{ height: "70%", paddingTop: 20 }}>
-        <ScrollView>
+        <ScrollView onScroll={handleScroll} scrollEventThrottle={4}>
           {documentos.map((documento) => (
             <ScoreData
               key={documento.id}
