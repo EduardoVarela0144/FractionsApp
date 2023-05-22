@@ -17,6 +17,8 @@ import Men from "../assets/images/Men.png";
 import Punk from "../assets/images/Punk.png";
 import Female from "../assets/images/Female.png";
 import Female2 from "../assets/images/Female2.png";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../utils/firebase";
 
 const imageMap = {
   Men: Men,
