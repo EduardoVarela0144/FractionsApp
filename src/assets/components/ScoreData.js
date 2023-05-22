@@ -40,7 +40,7 @@ export default function ScoreData({ id, points, name, avatar }) {
         }}
       >
         <Image source={selectedImage} style={{ width: 50, height: 50 }} />
-        <Text> {name} </Text>
+        <Text style={{ fontSize: 10 }}> {name} </Text>
       </View>
       <View
         style={{

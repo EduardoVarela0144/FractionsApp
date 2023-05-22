@@ -122,7 +122,7 @@ export default function Scores() {
                 alignItems: "center",
               }}
             >
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>2</Text>
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>2</Text>
             </View>
             <View
               style={{
@@ -138,7 +138,7 @@ export default function Scores() {
                 source={selectedImageDos}
                 style={{ width: 40, height: 40 }}
               />
-              <Text style={{ fontFamily: "Helvetica" }}>
+              <Text style={{ fontFamily: "Helvetica", textAlign: "center" }}>
                 {valoresAltos[1]?.User}
               </Text>
             </View>
@@ -151,7 +151,7 @@ export default function Scores() {
                 alignItems: "center",
               }}
             >
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>1</Text>
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>1</Text>
             </View>
             <View
               style={{
@@ -174,7 +174,7 @@ export default function Scores() {
                 source={selectedImageUno}
                 style={{ width: 40, height: 40, marginTop: 5 }}
               />
-              <Text style={{ fontFamily: "Helvetica" }}>
+              <Text style={{ fontFamily: "Helvetica", textAlign: "center" }}>
                 {valoresAltos[0]?.User}
               </Text>
             </View>
@@ -187,7 +187,7 @@ export default function Scores() {
                 alignItems: "center",
               }}
             >
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>3</Text>
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>3</Text>
             </View>
             <View
               style={{
@@ -203,7 +203,7 @@ export default function Scores() {
                 source={selectedImageTres}
                 style={{ width: 40, height: 40 }}
               />
-              <Text style={{ fontFamily: "Helvetica" }}>
+              <Text style={{ fontFamily: "Helvetica", textAlign: "center" }}>
                 {valoresAltos[2]?.User}
               </Text>
             </View>
