@@ -52,6 +52,26 @@ export default function FractionCard(props) {
   const [result, setResult] = useState(null);
   const [options, setOptions] = useState([]);
 
+  const handlePostRequest = async () => {
+    try {
+      const collectionRef = collection(db, "Scores");
+
+      // Datos de la publicación a agregar
+      const postData = {
+        Avatar: params.avatar,
+        Score: points,
+        User: params.name,
+      };
+
+      // Agregar la publicación a la colección
+      const docRef = await addDoc(collectionRef, postData);
+
+      console.log("Publicación agregada con ID:", docRef.id);
+    } catch (error) {
+      console.error("Error al agregar la publicación:", error);
+    }
+  };
+
   useEffect(() => {
     generateFractionsAndOperation();
   }, []);
@@ -170,7 +190,8 @@ export default function FractionCard(props) {
   const HideModal = () => {
     setModalVisible(!modalVisible);
     setVisible(false);
-    if (questions >= 9) {
+    if (questions >= 1) {
+      handlePostRequest();
       goToFinalScore();
       setPoints(0);
       setQuestions(0);
